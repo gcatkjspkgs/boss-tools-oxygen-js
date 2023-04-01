@@ -42,7 +42,7 @@ onEvent('player.tick', event => {
     if(event.player.fullNBT.ActiveEffects!=undefined)
         event.player.fullNBT.ActiveEffects.forEach(e => {effects.push(e.func_74762_e("Id"))})
 
-    if (includes(effects, 50)) return
+    if (includes(effects, 36)) return
 
     if(
         includes(acceptablearmor[0], armor[0]) &&
@@ -84,7 +84,7 @@ onEvent('entity.spawned', event => {
         if(event.entity.fullNBT.ActiveEffects!=undefined)
             event.entity.fullNBT.ActiveEffects.forEach(e => {effects.push(e.func_74762_e("Id"))})
     
-        if (includes(effects, 50)) hurt = false
+        if (includes(effects, 36)) hurt = false
     
         if (hurt) event.entity.attack("oxygen", 5)
         
