@@ -42,7 +42,7 @@ onEvent('player.tick', event => {
     if(event.player.fullNBT.ActiveEffects!=undefined)
         event.player.fullNBT.ActiveEffects.forEach(e => {effects.push(e.func_74762_e("Id"))})
 
-    if (includes(effects, 36)) return
+    if (event.player.potionEffects.isActive("boss_tools:oxygen_bubble_effect")) return
 
     if(
         includes(acceptablearmor[0], armor[0]) &&
@@ -77,17 +77,9 @@ onEvent('entity.spawned', event => {
 
     function entityOxygenCheck() {
         if (!event.entity) return
+    
+        if (!event.entity.potionEffects.isActive("boss_tools:oxygen_bubble_effect")) event.entity.attack("oxygen", 5)
 
-        let hurt = true
-    
-        let effects = []
-        if(event.entity.fullNBT.ActiveEffects!=undefined)
-            event.entity.fullNBT.ActiveEffects.forEach(e => {effects.push(e.func_74762_e("Id"))})
-    
-        if (includes(effects, 36)) hurt = false
-    
-        if (hurt) event.entity.attack("oxygen", 5)
-        
         event.server.scheduleInTicks(50, () => {
             entityOxygenCheck()
         })
