@@ -73,7 +73,7 @@ onEvent('player.tick', event => {
 })
 
 onEvent('entity.spawned', event => {
-    if (global.oxygen_planets==undefined || !includes(global.oxygen_planets, event.player.getLevel().getDimension())) return
+    if (global.oxygen_planets==undefined || !includes(global.oxygen_planets, event.entity.getLevel().getDimension())) return
 
     function entityOxygenCheck() {
         if (!event.entity) return
@@ -98,20 +98,11 @@ onEvent('entity.spawned', event => {
         "corpse.corpse",
 
         "minecraft.item",
-        "minecraft.arrow",
-
-        "rats.rat",
-
-        "minecraft.enderman",
-        "minecraft.end_crystal",
-        "draconicevolution",
-        "betterendforge",
-
-        "crewmatesmod.crewmate"
+        "minecraft.arrow"
     ]
 
     let include = true
-    blacklist.forEach(e => {
+    global.oxygen_entity_blacklist.concat(blacklist).forEach(e => {
         if (event.entity.getType().toString().contains(e)) include = false
     })
     
