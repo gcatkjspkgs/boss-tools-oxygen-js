@@ -6,7 +6,7 @@ function includes(arr, e) {
     return returnval
 }
 
-onEvent('player.tick', event => {
+onEvent("player.tick", event => {
     if (event.player.getTicksExisted() % 5 != 0 || event.player.isCreative() || global.oxygen_planets==undefined || !includes(global.oxygen_planets, event.player.getLevel().getDimension())) return
 
     const acceptablearmor = [
@@ -72,7 +72,7 @@ onEvent('player.tick', event => {
     event.player.attack("oxygen", 1)
 })
 
-onEvent('entity.spawned', event => {
+onEvent("entity.spawned", event => {
     if (global.oxygen_planets==undefined || !includes(global.oxygen_planets, event.entity.getLevel().getDimension())) return
 
     function entityOxygenCheck() {
@@ -101,7 +101,7 @@ onEvent('entity.spawned', event => {
     if (include) entityOxygenCheck()
 })
 
-onEvent('block.right_click', event => {
+onEvent("block.right_click", event => {
     if (global.oxygen_planets==undefined || !includes(global.oxygen_planets, event.player.getLevel().getDimension())) return
 
     const replacements = {
