@@ -1,3 +1,13 @@
+function oxygenCheck(dim) {
+    if (global.oxygen_planets==null) return true
+
+    let oxygen = true 
+    global.oxygen_planets.forEach(p => {
+        if (dim.toString().contains(p)) oxygen = false
+    })
+
+    return oxygen
+}
 function includes(arr, e) {
     let returnval = false
     arr.forEach(i => {
@@ -7,7 +17,7 @@ function includes(arr, e) {
 }
 
 onEvent("player.tick", event => {
-    if (event.player.getTicksExisted() % 5 != 0 || event.player.isCreative() || global.oxygen_planets==undefined || !includes(global.oxygen_planets, event.player.getLevel().getDimension())) return
+    if (event.player.getTicksExisted() % 5 != 0 || event.player.isCreative() || oxygenCheck(event.player.getLevel().getDimension())) return
 
     const acceptablearmor = [
         ["boss_tools:space_boots", "boss_tools:netherite_space_boots"],
@@ -73,7 +83,7 @@ onEvent("player.tick", event => {
 })
 
 onEvent("entity.spawned", event => {
-    if (global.oxygen_planets==undefined || !includes(global.oxygen_planets, event.entity.getLevel().getDimension())) return
+    if (oxygenCheck(event.player.getLevel().getDimension())) return
 
     function entityOxygenCheck() {
         if (!event.entity) return
@@ -102,7 +112,7 @@ onEvent("entity.spawned", event => {
 })
 
 onEvent("block.right_click", event => {
-    if (global.oxygen_planets==undefined || !includes(global.oxygen_planets, event.player.getLevel().getDimension())) return
+    if (oxygenCheck(event.player.getLevel().getDimension())) return
 
     const replacements = {
         "minecraft:torch": "boss_tools:coal_torch",
