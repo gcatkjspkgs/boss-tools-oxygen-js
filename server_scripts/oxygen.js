@@ -83,7 +83,7 @@ onEvent("player.tick", event => {
 })
 
 onEvent("entity.spawned", event => {
-    if (oxygenCheck(event.player.getLevel().getDimension())) return
+    if (oxygenCheck(event.entity.getLevel().getDimension())) return
 
     function entityOxygenCheck() {
         if (!event.entity) return
