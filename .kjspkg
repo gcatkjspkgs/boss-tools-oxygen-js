@@ -1,9 +1,9 @@
 {
     "author": "G_cat",
-    "description": "A KubeJS script that allows you to add custom dimensions to the Space Boss-Tools oxygen system. Docs: https://github.com/gcatkjspkgs/boss-tools-oxygen-js/blob/main/README.md. Requires Space Boss-Tools/Beyond Earth to work.",
+    "description": "A KubeJS script that allows you to add custom dimensions to the Space Boss-Tools oxygen system. Docs: https://github.com/gcatkjspkgs/boss-tools-oxygen-js/blob/main/README.md.",
     
     "versions": [6],
     "modloaders": ["forge"],
-    "dependencies": [],
+    "dependencies": ["mod:boss_tools"],
     "incompatibilities": []
 }
