@@ -1,6 +1,6 @@
 function oxygenCheck(dim) {
-    if (global.oxygen_planets==null) return true
     if (global.oxygen_planets_whitelist==null) global.oxygen_planets_whitelist = true
+    if (global.oxygen_planets==null || dim.startsWith("boss_tools")) return global.oxygen_planets_whitelist
 
     let oxygen = global.oxygen_planets_whitelist ? true : false
     global.oxygen_planets.forEach(p => {
