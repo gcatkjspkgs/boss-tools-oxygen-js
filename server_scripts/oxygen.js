@@ -1,9 +1,10 @@
 function oxygenCheck(dim) {
     if (global.oxygen_planets==null) return true
+    if (global.oxygen_planets_whitelist==null) global.oxygen_planets_whitelist = true
 
-    let oxygen = true 
+    let oxygen = global.oxygen_planets_whitelist ? true : false
     global.oxygen_planets.forEach(p => {
-        if (dim.toString().contains(p)) oxygen = false
+        if (dim.toString().contains(p)) oxygen = !oxygen
     })
 
     return oxygen

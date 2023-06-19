@@ -5,7 +5,8 @@
 To add a planet to the oxygen system registry, simply add this to your globals:
 
 ```js
-global.oxygen_planets = [<dimension ids>]
+global.oxygen_planets = ["modid:dimension"]
+global.oxygen_planets_whitelist = false // You can also set all planets to require oxygen except certain ones
 ```
 
 To add a oxygen-resistant entity, add this:
