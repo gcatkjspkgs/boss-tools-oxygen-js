@@ -87,7 +87,7 @@ onEvent("entity.spawned", event => {
     if (oxygenCheck(event.entity.getLevel().getDimension())) return
 
     function entityOxygenCheck() {
-        if (!event.entity) return
+        if (event.entity==null) return
     
         if (!event.entity.potionEffects.isActive("boss_tools:oxygen_bubble_effect")) event.entity.attack("oxygen", 5)
 
