@@ -45,12 +45,12 @@ onEvent("player.tick", event => {
         if (slot==103) helmet = i
         if (i.func_74779_i("id")=="boss_tools_giselle_addon:oxygen_can" && i.func_74775_l("tag").func_74775_l("boss_tools_giselle_addon:oxygen_capacitor_capability").func_74775_l("oxygencharger").func_74779_i("chargemode")!="boss_tools_giselle_addon:none") oxygencan = i
     })
-    if (helmet!=undefined) {
-        if (helmet.func_74775_l("tag").Enchantments!=undefined) helmet.func_74775_l("tag").Enchantments.forEach(e => {enchantments.push(e.func_74779_i("id"))})
-        if (helmet.func_74775_l("tag").func_74775_l("mekData").func_74775_l("modules")!=undefined) modules = helmet.func_74775_l("tag").func_74775_l("mekData").func_74775_l("modules").func_150296_c()
+    if (helmet!=null) {
+        if (helmet.func_74775_l("tag").Enchantments!=null) helmet.func_74775_l("tag").Enchantments.forEach(e => {enchantments.push(e.func_74779_i("id"))})
+        if (helmet.func_74775_l("tag").func_74775_l("mekData").func_74775_l("modules")!=null) modules = helmet.func_74775_l("tag").func_74775_l("mekData").func_74775_l("modules").func_150296_c()
         if (helmet.func_74779_i("id")=="endless:infinity_helmet") return
     }
-    if(event.player.fullNBT.ActiveEffects!=undefined)
+    if(event.player.fullNBT.ActiveEffects!=null)
         event.player.fullNBT.ActiveEffects.forEach(e => {effects.push(e.func_74762_e("Id"))})
 
     if (event.player.potionEffects.isActive("boss_tools:oxygen_bubble_effect")) return
@@ -65,14 +65,14 @@ onEvent("player.tick", event => {
         return
     }
 
-    if (oxygencan!=undefined) {
+    if (oxygencan!=null) {
         let data = oxygencan.func_74775_l("tag").func_74775_l("boss_tools_giselle_addon:oxygen_capacitor_capability")
         if (
             (
                 includes(enchantments, "boss_tools_giselle_addon:space_breathing") ||
                 includes(modules, "boss_tools_giselle_addon:space_breathing_unit")
             ) &&
-            oxygencan!=undefined &&
+            oxygencan!=null &&
             data.func_74775_l("oxygenstorage").func_74762_e("oxygen") > 0
         ) {
             Utils.server.runCommandSilent(`replaceitem entity ${event.player.getName().string} container.${oxygencan.func_74762_e("Slot")} boss_tools_giselle_addon:oxygen_can{"boss_tools_giselle_addon:oxygen_capacitor_capability":{oxygenstorage:{oxygen:${data.func_74775_l("oxygenstorage").func_74762_e("oxygen")-1}}, oxygencharger:{chargemode:"${data.func_74775_l("oxygencharger").func_74779_i("chargemode")}"}}}`)
